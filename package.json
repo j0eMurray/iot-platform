@@ -1,6 +1,7 @@
 {
   "name": "iot-platform",
   "private": true,
+    "type": "module",
   "scripts": {
     "fmt": "prettier --write .",
     "lint": "eslint .",

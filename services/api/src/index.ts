@@ -27,7 +27,7 @@ app.get("/devices/:id/last", async (req) => {
 });
 
 // 👇 Handler WS correcto: primer parámetro es el WebSocket
-app.get("/ws", { websocket: true }, (socket: import("ws").WebSocket, _req) => {
+app.get("/ws", { websocket: true }, (socket: import("ws").WebSocket) => {
   const timer = setInterval(async () => {
     const { rows } = await pg.query(
       "SELECT device_id, ts, payload FROM telemetry ORDER BY ts DESC LIMIT 20"
