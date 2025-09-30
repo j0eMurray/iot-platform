@@ -1,0 +1,22 @@
+{
+  "name": "iot-platform",
+  "dockerComposeFile": ["../infra/docker-compose.dev.yml"],
+  "service": "dev",
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "EditorConfig.EditorConfig",
+        "github.copilot",
+        "continue.continue"
+      ]
+    }
+  },
+  "postCreateCommand": "corepack enable && npm -v && pnpm -v || true"
+}
