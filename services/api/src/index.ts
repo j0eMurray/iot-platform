@@ -15,8 +15,6 @@ const app = Fastify({ logger: true });
 await app.register(cors, { origin: true });
 await app.register(websocket);
 
-type WSConn = { socket: import("ws").WebSocket };
-
 app.get("/health", async () => ({ ok: true }));
 
 app.get("/devices/:id/last", async (req) => {
@@ -28,16 +26,16 @@ app.get("/devices/:id/last", async (req) => {
   return rows[0] || {};
 });
 
-app.get("/ws", { websocket: true }, (conn: WSConn) => {
+// 👇 Handler WS correcto: primer parámetro es el WebSocket
+app.get("/ws", { websocket: true }, (socket: import("ws").WebSocket, _req) => {
   const timer = setInterval(async () => {
     const { rows } = await pg.query(
       "SELECT device_id, ts, payload FROM telemetry ORDER BY ts DESC LIMIT 20"
     );
-    conn.socket.send(JSON.stringify(rows));
+      socket.send(JSON.stringify(rows));
   }, 2000);
-  conn.socket.on("close", () => clearInterval(timer));
+
+    socket.on("close", () => clearInterval(timer));
 });
 
-app.listen({ port: PORT, host: "0.0.0.0" }, () =>
-  log.info(`API on :${PORT}`)
-);
+app.listen({ port: PORT, host: "0.0.0.0" }, () => log.info(`API on :${PORT}`));
