@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import websocket, { type SocketStream } from "@fastify/websocket";
+import websocket from "@fastify/websocket";
 import cors from "@fastify/cors";
 import { Client } from "pg";
 import pino from "pino";
@@ -15,6 +15,8 @@ const app = Fastify({ logger: true });
 await app.register(cors, { origin: true });
 await app.register(websocket);
 
+type WSConn = { socket: import("ws").WebSocket };
+
 app.get("/health", async () => ({ ok: true }));
 
 app.get("/devices/:id/last", async (req) => {
@@ -26,7 +28,7 @@ app.get("/devices/:id/last", async (req) => {
   return rows[0] || {};
 });
 
-app.get("/ws", { websocket: true }, (conn: SocketStream) => {
+app.get("/ws", { websocket: true }, (conn: WSConn) => {
   const timer = setInterval(async () => {
     const { rows } = await pg.query(
       "SELECT device_id, ts, payload FROM telemetry ORDER BY ts DESC LIMIT 20"
