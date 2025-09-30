@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import websocket from "@fastify/websocket";
+import websocket, { type SocketStream } from "@fastify/websocket";
 import cors from "@fastify/cors";
 import { Client } from "pg";
 import pino from "pino";
@@ -26,7 +26,7 @@ app.get("/devices/:id/last", async (req) => {
   return rows[0] || {};
 });
 
-app.get("/ws", { websocket: true }, (conn) => {
+app.get("/ws", { websocket: true }, (conn: SocketStream) => {
   const timer = setInterval(async () => {
     const { rows } = await pg.query(
       "SELECT device_id, ts, payload FROM telemetry ORDER BY ts DESC LIMIT 20"
