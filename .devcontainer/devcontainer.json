@@ -18,5 +18,5 @@
       ]
     }
   },
-  "postCreateCommand": "corepack enable && npm -v && pnpm -v || true"
+  "postCreateCommand": "sudo corepack enable && sudo corepack prepare pnpm@9.9.0 --activate || true"
 }

@@ -31,3 +31,9 @@ apps/flutter_app/pubspec.lock
 # OS
 .DS_Store
 Thumbs.db
+
+# pnpm store (cache)
+.pnpm-store/
+
+# Mosquitto logs
+infra/mosquitto/log/
