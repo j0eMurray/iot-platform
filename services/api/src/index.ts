@@ -39,4 +39,3 @@ app.get("/ws", { websocket: true }, (socket: import("ws").WebSocket) => {
 });
 
 app.listen({ port: PORT, host: "0.0.0.0" }, () => log.info(`API on :${PORT}`));
-
