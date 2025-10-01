@@ -40,3 +40,9 @@ app.get("/ws", { websocket: true }, (socket: import("ws").WebSocket) => {
 
 app.listen({ port: PORT, host: "0.0.0.0" }, () => log.info(`API on :${PORT}`));
 
+// TODO: temporary test for Copilot
+process.on("SIGINT", async () => {
+  log.info("SIGINT received, closing");
+  await pg.end();
+  process.exit(0);
+});
