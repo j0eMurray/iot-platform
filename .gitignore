@@ -35,3 +35,6 @@ Thumbs.db
 # pnpm store (cache)
 .pnpm-store/
 .pnpm_store/
+
+# Mosquitto logs
+infra/mosquitto/log/
