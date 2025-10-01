@@ -31,3 +31,7 @@ apps/flutter_app/pubspec.lock
 # OS
 .DS_Store
 Thumbs.db
+
+# pnpm store (cache)
+.pnpm-store/
+.pnpm_store/
