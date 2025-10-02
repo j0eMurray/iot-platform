@@ -9,3 +9,4 @@ MVP IoT con ESP32 + MQTT (Mosquitto), ingest Node/TS → Postgres, API Fastify R
 4) pnpm dev:ingest (terminal 1)
 5) pnpm dev:api (terminal 2)
 
+
