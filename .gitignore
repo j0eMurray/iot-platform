@@ -38,3 +38,6 @@ Thumbs.db
 
 # Mosquitto logs
 infra/mosquitto/log/
+
+# Continue agents (local only)
+.devcontainer/continue/
