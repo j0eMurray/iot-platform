@@ -1,10 +1,16 @@
-# iot-platform
+# IoT Platform (DEV)
 
-MVP IoT con ESP32 + MQTT (Mosquitto), ingest Node/TS → Postgres, API Fastify REST/WS, y app Flutter (próximamente).
+Stack local con:
+- **API** Fastify (HTTP + WS) → consultas y streaming.
+- **Ingest** (worker) → suscribe a MQTT y persiste en Postgres.
+- **DB** PostgreSQL.
+- **Broker MQTT**: en DEV usamos **Mosquitto nativo en Windows** (service).
+- **Caddy (DEV)**: reverse proxy HTTP/WS en Windows → expone `:3001` a la LAN.
 
-## Desarrollo rápido
-1) Reopen in Container (VS Code).
-2) pnpm install
-3) pnpm dev:up
-4) pnpm dev:ingest (terminal 1)
-5) pnpm dev:api (terminal 2)
+## Arranque rápido
+- Ver **docs/RUNBOOK.md** (start/stop en un clic con PowerShell).
+- Arquitectura visual: **docs/ARCHITECTURE.md**.
+
+Repos relacionados:
+- App Flutter: `iot-app`
+- Dispositivo ESP32: `iot-device` (proyecto `iot-device-v1`)
