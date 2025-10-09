@@ -19,9 +19,9 @@ for ($i=0; $i -lt 12; $i++) {
 if (-not $ok) { Write-Warning "API no respondió /health en localhost:3000, sigo de todas formas..." }
 
 # 4) Lanzar Caddy proxy (HTTP/WS :3001) en otra ventana
-Start-Process -NoNewWindow -FilePath "C:\tools\caddy\caddy_windows_amd64.exe" -ArgumentList @(
-  "reverse-proxy","--from",":3000","--to","127.0.0.1:3001"
-)
+#Start-Process -NoNewWindow -FilePath "C:\tools\caddy\caddy_windows_amd64.exe" -ArgumentList @(
+#  "reverse-proxy","--from",":3001","--to","127.0.0.1:3000"
+#)
 
 Write-Host "DONE: api+db+ingest containers + Caddy listening :3001"
 Write-Host "Prueba: curl http://192.168.1.146:3001/health"
